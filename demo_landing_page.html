@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Trading Hub - Landing Page Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            font-family: 'Arial Black', Arial, sans-serif !important;
+            background-color: #87CEEB !important;
+            background: #87CEEB !important;
+            min-height: 100vh !important;
+            color: #333 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .background-wrapper {
+            background-color: #87CEEB !important;
+            background: #87CEEB !important;
+            min-height: 100vh !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .demo-banner {
+            background: #FF6347;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .header {
+            background: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #FFD700;
+            color: #fff;
+        }
+
+        .connect-wallet {
+            background: #FF6347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .connect-wallet:hover {
+            background: #FF4500;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .vending-machine {
+            background: linear-gradient(145deg, #e6e6e6, #ffffff);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .vending-machine-image {
+            width: 300px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .vending-controls {
+            flex: 1;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .machine-title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .tier-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .tier-basic {
+            border-color: #87CEEB;
+        }
+
+        .tier-basic:hover {
+            background: linear-gradient(145deg, #87CEEB, #4682B4);
+            color: white;
+        }
+
+        .tier-premium {
+            border-color: #FFD700;
+        }
+
+        .tier-premium:hover {
+            background: linear-gradient(145deg, #FFD700, #FFA500);
+            color: white;
+        }
+
+        .tier-elite {
+            border-color: #FF6347;
+        }
+
+        .tier-elite:hover {
+            background: linear-gradient(145deg, #FF6347, #DC143C);
+            color: white;
+        }
+
+        .tier-price {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tier-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .tier-description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .buy-button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-option:hover {
+            border-color: #FFD700;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-info {
+            text-align: center;
+            margin-top: 40px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .vending-machine {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .vending-machine-image {
+                width: 250px;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #87CEEB !important; background: #87CEEB !important; margin: 0; padding: 0;">
+    <div class="background-wrapper">
+        <div class="demo-banner">🎮 DEMO VERSION - Web3 Trading Hub Landing Page</div>
+
+        <header class="header">
+            <nav class="nav">
+                <div class="logo">🎮 Web3 Trading Hub</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="demo_user_dashboard.html">Dashboard</a></li>
+                </ul>
+                <button class="connect-wallet" onclick="connectWallet()">🔗 Connect Wallet</button>
+            </nav>
+        </header>
+
+        <main class="hero">
+            <h1 class="hero-title">DIGITAL VENDING MACHINE</h1>
+            <p class="footer-info">Purchase randomized NFT trading card packs & redeem for physical copies!</p>
+
+            <div class="vending-machine">
+                <img src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/686450abb7513925ae253e8a.png"
+                    alt="Web3 Trading Hub Vending Machine" class="vending-machine-image" loading="lazy">
+
+                <div class="vending-controls">
+                    <h2 class="machine-title">🎰 Choose Your Pack Tier</h2>
+
+                    <div class="tier-grid">
+                        <div class="tier-card tier-basic" onclick="selectTier('basic')">
+                            <div class="tier-price">💰 $25</div>
+                            <div class="tier-name">BASIC PACK</div>
+                            <div class="tier-description">
+                                • 5 Random Cards<br>
+                                • Common & Uncommon<br>
+                                • Great starter pack
+                            </div>
+                            <button class="buy-button">BUY NOW</button>
+                        </div>
+
+                        <div class="tier-card tier-premium" onclick="selectTier('premium')">
+                            <div class="tier-price">💎 $50</div>
+                            <div class="tier-name">PREMIUM PACK</div>
+                            <div class="tier-description">
+                                • 10 Random Cards<br>
+                                • Guaranteed 1 Rare<br>
+                                • Better odds for epic cards
+                            </div>
+                            <button class="buy-button">BUY NOW</button>
+                        </div>
+
+                        <div class="tier-card tier-elite" onclick="selectTier('elite')">
+                            <div class="tier-price">👑 $75</div>
+                            <div class="tier-name">ELITE PACK</div>
+                            <div class="tier-description">
+                                • 15 Random Cards<br>
+                                • Guaranteed 1 Legendary<br>
+                                • Highest rarity chances
+                            </div>
+                            <button class="buy-button">BUY NOW</button>
+                        </div>
+                    </div>
+
+                    <div class="payment-options">
+                        <div class="payment-option" onclick="selectPayment('card')">
+                            <span>💳</span>
+                            <div>
+                                <strong>Credit Card</strong><br>
+                                <small>Quick & Easy via Stripe</small>
+                            </div>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment('wallet')">
+                            <span>🔗</span>
+                            <div>
+                                <strong>Polygon Wallet</strong><br>
+                                <small>Own NFTs Instantly</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p>🎨 Retro gaming aesthetic meets cutting-edge Web3 technology</p>
+                <p>⛽ Powered by Polygon for low-cost transactions</p>
+                <p style="margin-top: 20px;">
+                    <a href="demo_minting_flow.html" style="color: #FFD700; text-decoration: underline;">→ View
+                        Minting
+                        Flow
+                        Demo</a> |
+                    <a href="demo_user_dashboard.html" style="color: #FFD700; text-decoration: underline;">User
+                        Dashboard
+                        Demo</a> |
+                    <a href="demo_admin_portal.html" style="color: #FFD700; text-decoration: underline;">Admin
+                        Portal
+                        Demo</a>
+                </p>
+            </div>
+        </main>
+
+        <script>
+            let selectedTier = null;
+            let selectedPayment = null;
+
+            function selectTier(tier) {
+                selectedTier = tier;
+
+                document.querySelectorAll('.tier-card').forEach(card => {
+                    card.style.border = '3px solid transparent';
+                    card.style.boxShadow = '';
+                });
+
+                const selectedCard = document.querySelector(`.tier-${tier}`);
+                selectedCard.style.border = '3px solid #333';
+                selectedCard.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.5)';
+
+                const prices = { basic: '$25', premium: '$50', elite: '$75' };
+                alert(`🎮 Selected ${tier.toUpperCase()} Pack (${prices[tier]})!\n\nNext: Choose your payment method below 👇`);
+            }
+
+            function selectPayment(method) {
+                if (!selectedTier) {
+                    alert('🎯 Please select a pack tier first!');
+                    return;
+                }
+
+                selectedPayment = method;
+                const messages = {
+                    card: '💳 Credit Card selected!\n\nIn the real app, this would:\n• Open Stripe checkout\n• Collect email for NFT storage\n• Process payment\n• Trigger minting',
+                    wallet: '🔗 Wallet payment selected!\n\nIn the real app, this would:\n• Connect to MetaMask/WalletConnect\n• Estimate gas fees\n• Execute transaction\n• Mint directly to wallet'
+                };
+
+                alert(messages[method] + '\n\n🎪 Ready to see the Minting & Reveal demo?');
+
+                setTimeout(() => {
+                    if (confirm('🎉 Navigate to Minting Flow demo?')) {
+                        window.location.href = 'demo_minting_flow.html';
+                    }
+                }, 1000);
+            }
+
+            function connectWallet() {
+                alert('🔗 Connect Wallet clicked!\n\nIn the real app, this would open a modal with:\n\n• MetaMask\n• WalletConnect\n• Coinbase Wallet\n• Magic.link (email)\n\nDemo: Wallet connected! 🎉');
+            }
+
+            // Add floating animation
+            document.addEventListener('DOMContentLoaded', function () {
+                setInterval(() => {
+                    const machine = document.querySelector('.vending-machine');
+                    machine.style.transition = 'transform 1s ease';
+                    machine.style.transform = 'translateY(-5px)';
+                    setTimeout(() => {
+                        machine.style.transform = 'translateY(0px)';
+                    }, 1000);
+                }, 4000);
+            });
+        </script>
+    </div>
+</body>
+
+</html>

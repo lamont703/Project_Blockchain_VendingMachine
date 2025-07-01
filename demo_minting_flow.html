@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Trading Hub - Minting Flow Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            font-family: 'Arial Black', Arial, sans-serif !important;
+            background-color: #1a1a2e !important;
+            background: #1a1a2e !important;
+            min-height: 100vh !important;
+            color: #fff !important;
+            overflow-x: hidden !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .background-wrapper {
+            background-color: #1a1a2e !important;
+            background: #1a1a2e !important;
+            min-height: 100vh !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .demo-banner {
+            background: #FF6347;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .nav-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #FFD700;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .stage {
+            display: none;
+            min-height: 70vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .stage.active {
+            display: flex;
+        }
+
+        .stage-title {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Payment Modal Stage */
+        .payment-modal {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 20px;
+            padding: 40px;
+            color: #333;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-option {
+            background: #f8f8f8;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #FFD700;
+            transform: translateY(-3px);
+        }
+
+        .payment-option.selected {
+            border-color: #FF6347;
+            background: #fff;
+        }
+
+        .continue-btn {
+            background: #FF6347;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .continue-btn:hover {
+            background: #FF4500;
+        }
+
+        /* Minting Animation Stage */
+        .vending-machine-anim {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vending-machine-img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: machineGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes machineGlow {
+
+            0%,
+            100% {
+                filter: brightness(1) drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+            }
+
+            50% {
+                filter: brightness(1.1) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+            }
+        }
+
+        .machine-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .machine-screen {
+            background: rgba(0, 0, 0, 0.8);
+            width: 120px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #00ff00;
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            border: 2px solid #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .pack-drop {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            animation: drop 2s ease-in-out;
+        }
+
+        @keyframes drop {
+            0% {
+                top: -100px;
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                top: auto;
+                bottom: 50px;
+            }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FF6347);
+            border-radius: 10px;
+            width: 0%;
+            animation: loading 3s ease-in-out forwards;
+        }
+
+        @keyframes loading {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Card Reveal Stage */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .card {
+            width: 150px;
+            height: 210px;
+            position: relative;
+            margin: 0 auto;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+        }
+
+        .card-back {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            transform: rotateY(180deg);
+        }
+
+        .card-rarity {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card-name {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .rarity-common {
+            background: linear-gradient(45deg, #87CEEB, #4682B4);
+        }
+
+        .rarity-rare {
+            background: linear-gradient(45deg, #9370DB, #6A5ACD);
+        }
+
+        .rarity-epic {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+        }
+
+        .rarity-legendary {
+            background: linear-gradient(45deg, #FF6347, #DC143C);
+        }
+
+        .reveal-all-btn {
+            background: #FFD700;
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px;
+            font-size: 16px;
+        }
+
+        .celebrate {
+            animation: celebrate 0.5s ease-in-out;
+        }
+
+        @keyframes celebrate {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .action-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.primary {
+            background: #FF6347;
+        }
+
+        .action-btn.primary:hover {
+            background: #FF4500;
+        }
+
+        @media (max-width: 768px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stage-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #1a1a2e !important; background: #1a1a2e !important; margin: 0; padding: 0;">
+    <div class="background-wrapper">
+        <div class="demo-banner">🎪 DEMO VERSION - Minting & Card Reveal Experience</div>
+
+        <a href="demo_landing_page.html" class="nav-back">← Back to Landing</a>
+
+        <div class="container">
+            <!-- Stage 1: Payment Selection -->
+            <div id="stage1" class="stage active">
+                <h1 class="stage-title">💳 Choose Payment Method</h1>
+                <div class="payment-modal">
+                    <div class="payment-option" onclick="selectPayment('card')">
+                        <h3>💳 Credit Card</h3>
+                        <p>Quick & Easy via Stripe<br><small>NFTs stored securely until you connect wallet</small></p>
+                    </div>
+                    <div class="payment-option" onclick="selectPayment('wallet')">
+                        <h3>🔗 Polygon Wallet</h3>
+                        <p>Own your NFTs instantly<br><small>Lower fees, direct to wallet</small></p>
+                    </div>
+                    <button class="continue-btn" onclick="nextStage()">Continue with Selection</button>
+                </div>
+            </div>
+
+            <!-- Stage 2: Minting Animation -->
+            <div id="stage2" class="stage">
+                <h1 class="stage-title">🎪 Minting Your NFT Pack</h1>
+                <div class="vending-machine-anim">
+                    <img src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/686450abb7513925ae253e8a.png"
+                        alt="Web3 Trading Hub Vending Machine - Minting" class="vending-machine-img" loading="lazy">
+                    <div class="machine-overlay">
+                        <div class="machine-screen">
+                            <span id="screen-text">MINTING...</span>
+                        </div>
+                        <div class="pack-drop" style="display: none;">
+                            🎁
+                        </div>
+                    </div>
+                </div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <p style="margin-top: 20px; font-size: 18px;">Creating your randomized trading cards...</p>
+            </div>
+
+            <!-- Stage 3: Card Reveal -->
+            <div id="stage3" class="stage">
+                <h1 class="stage-title">🎉 Your New NFT Cards!</h1>
+                <p style="margin-bottom: 20px;">Click each card to reveal what you got:</p>
+
+                <div class="card-grid" id="cardGrid">
+                    <!-- Cards will be generated by JavaScript -->
+                </div>
+
+                <button class="reveal-all-btn" onclick="revealAllCards()">🎪 Reveal All Cards</button>
+
+                <div class="action-buttons">
+                    <a href="demo_user_dashboard.html" class="action-btn primary">📱 View Collection</a>
+                    <a href="demo_landing_page.html" class="action-btn">🔄 Buy More Packs</a>
+                    <a href="#" class="action-btn" onclick="shareCollection()">📤 Share Collection</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let selectedPayment = null;
+            let currentStage = 1;
+
+            const cardTypes = [
+                { name: 'Fire Dragon', rarity: 'legendary', emoji: '🔥', class: 'rarity-legendary' },
+                { name: 'Water Elemental', rarity: 'epic', emoji: '💧', class: 'rarity-epic' },
+                { name: 'Earth Guardian', rarity: 'rare', emoji: '🌍', class: 'rarity-rare' },
+                { name: 'Wind Spirit', rarity: 'common', emoji: '💨', class: 'rarity-common' },
+                { name: 'Lightning Beast', rarity: 'rare', emoji: '⚡', class: 'rarity-rare' }
+            ];
+
+            function selectPayment(method) {
+                selectedPayment = method;
+
+                // Clear previous selections
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+
+                // Select current option
+                event.target.closest('.payment-option').classList.add('selected');
+
+                const messages = {
+                    card: 'Credit Card selected! You\'ll be redirected to Stripe checkout.',
+                    wallet: 'Wallet payment selected! MetaMask will open for transaction approval.'
+                };
+
+                // Show selection feedback
+                setTimeout(() => {
+                    alert(messages[method]);
+                }, 300);
+            }
+
+            function nextStage() {
+                if (!selectedPayment) {
+                    alert('Please select a payment method first!');
+                    return;
+                }
+
+                currentStage++;
+                showStage(currentStage);
+
+                if (currentStage === 2) {
+                    startMintingAnimation();
+                }
+            }
+
+            function showStage(stageNum) {
+                // Hide all stages
+                document.querySelectorAll('.stage').forEach(stage => {
+                    stage.classList.remove('active');
+                });
+
+                // Show current stage
+                document.getElementById(`stage${stageNum}`).classList.add('active');
+            }
+
+            function startMintingAnimation() {
+                const screenText = document.getElementById('screen-text');
+                const packDrop = document.querySelector('.pack-drop');
+
+                // Animation sequence
+                setTimeout(() => {
+                    screenText.textContent = 'PROCESSING...';
+                    packDrop.style.display = 'flex';
+                }, 1000);
+
+                setTimeout(() => {
+                    screenText.textContent = 'RANDOMIZING...';
+                }, 2000);
+
+                setTimeout(() => {
+                    screenText.textContent = 'COMPLETE!';
+                    screenText.style.color = '#00ff00';
+                }, 3000);
+
+                setTimeout(() => {
+                    currentStage++;
+                    showStage(currentStage);
+                    generateCards();
+                }, 4000);
+            }
+
+            function generateCards() {
+                const cardGrid = document.getElementById('cardGrid');
+                cardGrid.innerHTML = '';
+
+                // Generate 5 random cards for demo
+                for (let i = 0; i < 5; i++) {
+                    const cardData = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+                    const cardElement = createCard(cardData, i);
+                    cardGrid.appendChild(cardElement);
+                }
+            }
+
+            function createCard(cardData, index) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => flipCard(card);
+
+                card.innerHTML = `
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div style="font-size: 40px;">🎴</div>
+                        <div>Mystery Card</div>
+                        <div style="font-size: 12px; margin-top: 10px;">Click to reveal!</div>
+                    </div>
+                    <div class="card-back ${cardData.class}">
+                        <div class="card-rarity">${cardData.emoji}</div>
+                        <div class="card-name">${cardData.name}</div>
+                        <div style="font-size: 12px; margin-top: 10px; text-transform: uppercase;">${cardData.rarity}</div>
+                    </div>
+                </div>
+            `;
+
+                return card;
+            }
+
+            function flipCard(cardElement) {
+                if (cardElement.classList.contains('flipped')) return;
+
+                cardElement.classList.add('flipped');
+                cardElement.classList.add('celebrate');
+
+                setTimeout(() => {
+                    cardElement.classList.remove('celebrate');
+                }, 500);
+
+                // Play sound effect (simulated)
+                console.log('🎵 Card reveal sound effect!');
+            }
+
+            function revealAllCards() {
+                const cards = document.querySelectorAll('.card:not(.flipped)');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        flipCard(card);
+                    }, index * 200);
+                });
+            }
+
+            function shareCollection() {
+                alert('🎉 Sharing feature!\n\nIn the real app, this would:\n• Generate a shareable image of your pack opening\n• Create social media posts\n• Share on Discord/Twitter\n• Show rarity statistics');
+            }
+
+            // Auto-advance demo for testing
+            document.addEventListener('DOMContentLoaded', function () {
+                // Uncomment this line for auto-demo mode
+                // setTimeout(() => { if (!selectedPayment) { selectPayment('wallet'); nextStage(); } }, 3000);
+            });
+        </script>
+    </div>
+</body>
+
+</html>
