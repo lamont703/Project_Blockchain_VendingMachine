@@ -195,8 +195,8 @@
 
         .tier-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin: 30px 0;
         }
 
@@ -241,6 +241,36 @@
         .tier-elite:hover {
             background: linear-gradient(145deg, #FF6347, #DC143C);
             color: white;
+        }
+
+        .tier-legendary {
+            border-color: #9370DB;
+        }
+
+        .tier-legendary:hover {
+            background: linear-gradient(145deg, #9370DB, #6A5ACD);
+            color: white;
+        }
+
+        .tier-ultimate {
+            border-color: #FF1493;
+        }
+
+        .tier-ultimate:hover {
+            background: linear-gradient(145deg, #FF1493, #DC143C);
+            color: white;
+        }
+
+        .tier-mythic {
+            border-color: #FFD700;
+            border-width: 3px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .tier-mythic:hover {
+            background: linear-gradient(145deg, #FFD700, #FFA500);
+            color: #333;
+            transform: translateY(-10px) scale(1.1);
         }
 
         .tier-price {
@@ -395,12 +425,45 @@
                         </div>
 
                         <div class="tier-card tier-elite" onclick="selectTier('elite')">
-                            <div class="tier-price">👑 $75</div>
+                            <div class="tier-price">👑 $100</div>
                             <div class="tier-name">ELITE PACK</div>
                             <div class="tier-description">
                                 • 15 Random Cards<br>
+                                • Guaranteed 1 Epic<br>
+                                • High chance for legendary
+                            </div>
+                            <button class="buy-button">BUY NOW</button>
+                        </div>
+
+                        <div class="tier-card tier-legendary" onclick="selectTier('legendary')">
+                            <div class="tier-price">🌟 $250</div>
+                            <div class="tier-name">LEGENDARY PACK</div>
+                            <div class="tier-description">
+                                • 25 Random Cards<br>
                                 • Guaranteed 1 Legendary<br>
-                                • Highest rarity chances
+                                • Premium collector pack
+                            </div>
+                            <button class="buy-button">BUY NOW</button>
+                        </div>
+
+                        <div class="tier-card tier-ultimate" onclick="selectTier('ultimate')">
+                            <div class="tier-price">💫 $500</div>
+                            <div class="tier-name">ULTIMATE PACK</div>
+                            <div class="tier-description">
+                                • 50 Random Cards<br>
+                                • Guaranteed 3 Legendary<br>
+                                • Ultra rare collection
+                            </div>
+                            <button class="buy-button">BUY NOW</button>
+                        </div>
+
+                        <div class="tier-card tier-mythic" onclick="selectTier('mythic')">
+                            <div class="tier-price">⚡ $1000</div>
+                            <div class="tier-name">MYTHIC PACK</div>
+                            <div class="tier-description">
+                                • 100 Random Cards<br>
+                                • Guaranteed 5 Legendary<br>
+                                • Exclusive mythic edition
                             </div>
                             <button class="buy-button">BUY NOW</button>
                         </div>
@@ -459,7 +522,7 @@
                 selectedCard.style.border = '3px solid #333';
                 selectedCard.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.5)';
 
-                const prices = { basic: '$25', premium: '$50', elite: '$75' };
+                const prices = { basic: '$25', premium: '$50', elite: '$100', legendary: '$250', ultimate: '$500', mythic: '$1000' };
                 alert(`🎮 Selected ${tier.toUpperCase()} Pack (${prices[tier]})!\n\nNext: Choose your payment method below 👇`);
             }
 

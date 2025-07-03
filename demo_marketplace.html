@@ -585,6 +585,407 @@
                 flex-direction: column;
             }
         }
+
+        /* NEW: My Collection Section Styles */
+        .my-collection-section {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .collection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .collection-title {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+
+        .list-nft-btn {
+            background: linear-gradient(145deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .list-nft-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .my-nft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .my-nft-card {
+            background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .my-nft-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #FFD700;
+        }
+
+        .my-nft-image {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            position: relative;
+        }
+
+        .my-nft-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .my-nft-id {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .list-actions {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .list-action-btn {
+            background: #87CEEB;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .list-action-btn:hover {
+            background: #4682B4;
+            transform: translateY(-1px);
+        }
+
+        .list-action-btn.sell {
+            background: #32CD32;
+        }
+
+        .list-action-btn.sell:hover {
+            background: #228B22;
+        }
+
+        .list-action-btn.trade {
+            background: #FF6347;
+        }
+
+        .list-action-btn.trade:hover {
+            background: #DC143C;
+        }
+
+        /* NEW: Listing Modal Styles */
+        .listing-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .listing-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .listing-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-close:hover {
+            color: #FF6347;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .modal-nft-preview {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .modal-nft-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .modal-nft-info h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .modal-nft-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .listing-type-selector {
+            margin-bottom: 30px;
+        }
+
+        .listing-type-selector h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .listing-type-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .listing-type-option {
+            background: #f8f8f8;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .listing-type-option:hover {
+            border-color: #FFD700;
+            background: #fff;
+        }
+
+        .listing-type-option.active {
+            border-color: #FFD700;
+            background: #FFF8DC;
+        }
+
+        .listing-type-option .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .listing-type-option .title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .listing-type-option .description {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .listing-form {
+            display: none;
+        }
+
+        .listing-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .price-input-group {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .currency-selector {
+            width: 100px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(145deg, #32CD32, #228B22);
+            color: white;
+        }
+
+        .modal-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.3);
+        }
+
+        .modal-btn.secondary {
+            background: #f8f8f8;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .modal-btn.secondary:hover {
+            background: #e8e8e8;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #155724;
+            text-align: center;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-message .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .success-message h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .listing-type-options {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-nft-preview {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -626,6 +1027,88 @@
                     <div class="quick-filter" onclick="filterRarity('epic')">👑 Epic</div>
                     <div class="quick-filter" onclick="filterRarity('legendary')">🌟 Legendary</div>
                     <div class="quick-filter" onclick="filterRarity('hot')">🔥 Hot Deals</div>
+                </div>
+            </div>
+
+            <!-- NEW: My Collection Section -->
+            <div class="my-collection-section">
+                <div class="collection-header">
+                    <h2 class="collection-title">🎒 My Collection</h2>
+                    <button class="list-nft-btn" onclick="showQuickListModal()">📝 List NFT</button>
+                </div>
+
+                <div class="my-nft-grid">
+                    <div class="my-nft-card" onclick="showListingModal('fire-dragon-001')">
+                        <div class="my-nft-image">🔥</div>
+                        <div class="my-nft-name">Fire Dragon Elite</div>
+                        <div class="my-nft-id">#001 • Legendary</div>
+                        <div class="list-actions">
+                            <button class="list-action-btn sell"
+                                onclick="event.stopPropagation(); listForSale('fire-dragon-001')">💰 Sell</button>
+                            <button class="list-action-btn trade"
+                                onclick="event.stopPropagation(); listForTrade('fire-dragon-001')">🔄 Trade</button>
+                        </div>
+                    </div>
+
+                    <div class="my-nft-card" onclick="showListingModal('water-guardian-045')">
+                        <div class="my-nft-image">💧</div>
+                        <div class="my-nft-name">Water Guardian</div>
+                        <div class="my-nft-id">#045 • Epic</div>
+                        <div class="list-actions">
+                            <button class="list-action-btn sell"
+                                onclick="event.stopPropagation(); listForSale('water-guardian-045')">💰 Sell</button>
+                            <button class="list-action-btn trade"
+                                onclick="event.stopPropagation(); listForTrade('water-guardian-045')">🔄 Trade</button>
+                        </div>
+                    </div>
+
+                    <div class="my-nft-card" onclick="showListingModal('lightning-beast-232')">
+                        <div class="my-nft-image">⚡</div>
+                        <div class="my-nft-name">Lightning Beast</div>
+                        <div class="my-nft-id">#232 • Rare</div>
+                        <div class="list-actions">
+                            <button class="list-action-btn sell"
+                                onclick="event.stopPropagation(); listForSale('lightning-beast-232')">💰 Sell</button>
+                            <button class="list-action-btn trade"
+                                onclick="event.stopPropagation(); listForTrade('lightning-beast-232')">🔄 Trade</button>
+                        </div>
+                    </div>
+
+                    <div class="my-nft-card" onclick="showListingModal('earth-titan-156')">
+                        <div class="my-nft-image">🌍</div>
+                        <div class="my-nft-name">Earth Titan</div>
+                        <div class="my-nft-id">#156 • Epic</div>
+                        <div class="list-actions">
+                            <button class="list-action-btn sell"
+                                onclick="event.stopPropagation(); listForSale('earth-titan-156')">💰 Sell</button>
+                            <button class="list-action-btn trade"
+                                onclick="event.stopPropagation(); listForTrade('earth-titan-156')">🔄 Trade</button>
+                        </div>
+                    </div>
+
+                    <div class="my-nft-card" onclick="showListingModal('shadow-wolf-089')">
+                        <div class="my-nft-image">🐺</div>
+                        <div class="my-nft-name">Shadow Wolf</div>
+                        <div class="my-nft-id">#089 • Rare</div>
+                        <div class="list-actions">
+                            <button class="list-action-btn sell"
+                                onclick="event.stopPropagation(); listForSale('shadow-wolf-089')">💰 Sell</button>
+                            <button class="list-action-btn trade"
+                                onclick="event.stopPropagation(); listForTrade('shadow-wolf-089')">🔄 Trade</button>
+                        </div>
+                    </div>
+
+                    <div class="my-nft-card" onclick="showListingModal('crystal-phoenix-003')">
+                        <div class="my-nft-image">🔮</div>
+                        <div class="my-nft-name">Crystal Phoenix</div>
+                        <div class="my-nft-id">#003 • Legendary</div>
+                        <div class="list-actions">
+                            <button class="list-action-btn sell"
+                                onclick="event.stopPropagation(); listForSale('crystal-phoenix-003')">💰 Sell</button>
+                            <button class="list-action-btn trade"
+                                onclick="event.stopPropagation(); listForTrade('crystal-phoenix-003')">🔄 Trade</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -722,6 +1205,146 @@
                     <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
                     <button class="modal-btn primary" onclick="makeOffer()">🔄 Make Offer</button>
                     <button class="modal-btn danger" onclick="buyNow()">💰 Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NFT Listing Modal -->
+        <div id="listingModal" class="listing-modal">
+            <div class="listing-modal-content">
+                <button class="modal-close" onclick="closeListingModal()">&times;</button>
+                
+                <div class="success-message" id="successMessage">
+                    <div class="icon">🎉</div>
+                    <h3>NFT Listed Successfully!</h3>
+                    <p>Your NFT has been listed on the marketplace. You'll be notified when someone makes an offer or purchase.</p>
+                    <button class="modal-btn secondary" onclick="closeListingModal()">Close</button>
+                </div>
+
+                <div id="listingFormContainer">
+                    <h2 class="modal-title">📝 List Your NFT</h2>
+
+                    <div class="modal-nft-preview" id="modalNftPreview">
+                        <div class="modal-nft-image" id="modalNftImage">🔥</div>
+                        <div class="modal-nft-info">
+                            <h3 id="modalNftName">Fire Dragon Elite</h3>
+                            <p id="modalNftDetails">#001 • Legendary • Power: 95/100</p>
+                        </div>
+                    </div>
+
+                    <div class="listing-type-selector">
+                        <h3>Choose Listing Type:</h3>
+                        <div class="listing-type-options">
+                            <div class="listing-type-option active" data-type="fixed" onclick="selectListingType('fixed')">
+                                <div class="icon">💰</div>
+                                <div class="title">Fixed Price</div>
+                                <div class="description">Set a fixed price for instant sale</div>
+                            </div>
+                            <div class="listing-type-option" data-type="auction" onclick="selectListingType('auction')">
+                                <div class="icon">🔥</div>
+                                <div class="title">Auction</div>
+                                <div class="description">Let buyers bid on your NFT</div>
+                            </div>
+                            <div class="listing-type-option" data-type="trade" onclick="selectListingType('trade')">
+                                <div class="icon">🔄</div>
+                                <div class="title">Trade Only</div>
+                                <div class="description">Exchange for other NFTs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fixed Price Form -->
+                    <div class="listing-form active" id="fixedPriceForm">
+                        <div class="form-group">
+                            <label for="fixedPrice">Price</label>
+                            <div class="price-input-group">
+                                <input type="number" id="fixedPrice" placeholder="Enter price..." step="0.01">
+                                <select class="currency-selector" id="fixedCurrency">
+                                    <option value="usd">USD</option>
+                                    <option value="eth">ETH</option>
+                                    <option value="matic">MATIC</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fixedDuration">Listing Duration</label>
+                            <select id="fixedDuration">
+                                <option value="7">7 Days</option>
+                                <option value="14">14 Days</option>
+                                <option value="30">30 Days</option>
+                                <option value="90">90 Days</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fixedDescription">Description (Optional)</label>
+                            <textarea id="fixedDescription" placeholder="Tell buyers about your NFT..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Auction Form -->
+                    <div class="listing-form" id="auctionForm">
+                        <div class="form-group">
+                            <label for="startingBid">Starting Bid</label>
+                            <div class="price-input-group">
+                                <input type="number" id="startingBid" placeholder="Minimum bid..." step="0.01">
+                                <select class="currency-selector" id="auctionCurrency">
+                                    <option value="usd">USD</option>
+                                    <option value="eth">ETH</option>
+                                    <option value="matic">MATIC</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservePrice">Reserve Price (Optional)</label>
+                            <input type="number" id="reservePrice" placeholder="Minimum sale price..." step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="auctionDuration">Auction Duration</label>
+                            <select id="auctionDuration">
+                                <option value="1">1 Day</option>
+                                <option value="3">3 Days</option>
+                                <option value="7">7 Days</option>
+                                <option value="14">14 Days</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="auctionDescription">Description (Optional)</label>
+                            <textarea id="auctionDescription" placeholder="Tell bidders about your NFT..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Trade Form -->
+                    <div class="listing-form" id="tradeForm">
+                        <div class="form-group">
+                            <label for="wantedCards">What Are You Looking For?</label>
+                            <textarea id="wantedCards" placeholder="e.g., Looking for Epic or Legendary cards from the Fire series..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="tradeRatio">Trade Ratio</label>
+                            <select id="tradeRatio">
+                                <option value="1:1">1:1 (One for One)</option>
+                                <option value="1:2">1:2 (One for Two)</option>
+                                <option value="2:1">2:1 (Two for One)</option>
+                                <option value="custom">Custom Ratio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="acceptPartialTrade">Accept Partial Trade?</label>
+                            <select id="acceptPartialTrade">
+                                <option value="no">No, full trade only</option>
+                                <option value="yes">Yes, with MATIC balance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tradeDescription">Additional Details</label>
+                            <textarea id="tradeDescription" placeholder="Any specific requirements or preferences..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button class="modal-btn secondary" onclick="closeListingModal()">Cancel</button>
+                        <button class="modal-btn primary" onclick="submitListing()">🚀 List NFT</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -872,6 +1495,198 @@
                     closeModal();
                 }
             }
+
+            const nftData = {
+                'fire-dragon-001': {
+                    name: 'Fire Dragon Elite',
+                    emoji: '🔥',
+                    id: '#001',
+                    rarity: 'Legendary',
+                    power: 95
+                },
+                'water-guardian-045': {
+                    name: 'Water Guardian',
+                    emoji: '💧',
+                    id: '#045',
+                    rarity: 'Epic',
+                    power: 78
+                },
+                'lightning-beast-232': {
+                    name: 'Lightning Beast',
+                    emoji: '⚡',
+                    id: '#232',
+                    rarity: 'Rare',
+                    power: 65
+                },
+                'earth-titan-156': {
+                    name: 'Earth Titan',
+                    emoji: '🌍',
+                    id: '#156',
+                    rarity: 'Epic',
+                    power: 82
+                },
+                'shadow-wolf-089': {
+                    name: 'Shadow Wolf',
+                    emoji: '🐺',
+                    id: '#089',
+                    rarity: 'Rare',
+                    power: 71
+                },
+                'crystal-phoenix-003': {
+                    name: 'Crystal Phoenix',
+                    emoji: '🔮',
+                    id: '#003',
+                    rarity: 'Legendary',
+                    power: 98
+                }
+            };
+
+            let currentNft = null;
+            let currentListingType = 'fixed';
+
+            function showListingModal(nftId) {
+                currentNft = nftData[nftId];
+                if (!currentNft) return;
+
+                // Update modal with NFT info
+                document.getElementById('modalNftImage').textContent = currentNft.emoji;
+                document.getElementById('modalNftName').textContent = currentNft.name;
+                document.getElementById('modalNftDetails').textContent = 
+                    `${currentNft.id} • ${currentNft.rarity} • Power: ${currentNft.power}/100`;
+
+                // Reset form
+                document.getElementById('successMessage').classList.remove('active');
+                document.getElementById('listingFormContainer').style.display = 'block';
+                selectListingType('fixed');
+
+                // Show modal
+                document.getElementById('listingModal').classList.add('active');
+            }
+
+            function selectListingType(type) {
+                currentListingType = type;
+
+                // Update option buttons
+                document.querySelectorAll('.listing-type-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                document.querySelector(`[data-type="${type}"]`).classList.add('active');
+
+                // Show/hide forms
+                document.querySelectorAll('.listing-form').forEach(form => {
+                    form.classList.remove('active');
+                });
+                document.getElementById(`${type}Form`).classList.add('active');
+            }
+
+            function closeListingModal() {
+                document.getElementById('listingModal').classList.remove('active');
+                // Reset form
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('active');
+                    document.getElementById('listingFormContainer').style.display = 'block';
+                }, 300);
+            }
+
+            function submitListing() {
+                let listingData = {
+                    nft: currentNft,
+                    type: currentListingType,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Collect form data based on type
+                if (currentListingType === 'fixed') {
+                    const price = document.getElementById('fixedPrice').value;
+                    const currency = document.getElementById('fixedCurrency').value;
+                    const duration = document.getElementById('fixedDuration').value;
+                    const description = document.getElementById('fixedDescription').value;
+
+                    if (!price) {
+                        alert('Please enter a price!');
+                        return;
+                    }
+
+                    listingData.price = price;
+                    listingData.currency = currency;
+                    listingData.duration = duration;
+                    listingData.description = description;
+
+                } else if (currentListingType === 'auction') {
+                    const startingBid = document.getElementById('startingBid').value;
+                    const reservePrice = document.getElementById('reservePrice').value;
+                    const currency = document.getElementById('auctionCurrency').value;
+                    const duration = document.getElementById('auctionDuration').value;
+                    const description = document.getElementById('auctionDescription').value;
+
+                    if (!startingBid) {
+                        alert('Please enter a starting bid!');
+                        return;
+                    }
+
+                    listingData.startingBid = startingBid;
+                    listingData.reservePrice = reservePrice;
+                    listingData.currency = currency;
+                    listingData.duration = duration;
+                    listingData.description = description;
+
+                } else if (currentListingType === 'trade') {
+                    const wantedCards = document.getElementById('wantedCards').value;
+                    const tradeRatio = document.getElementById('tradeRatio').value;
+                    const acceptPartialTrade = document.getElementById('acceptPartialTrade').value;
+                    const description = document.getElementById('tradeDescription').value;
+
+                    if (!wantedCards) {
+                        alert('Please specify what you\'re looking for!');
+                        return;
+                    }
+
+                    listingData.wantedCards = wantedCards;
+                    listingData.tradeRatio = tradeRatio;
+                    listingData.acceptPartialTrade = acceptPartialTrade;
+                    listingData.description = description;
+                }
+
+                // Simulate listing creation
+                console.log('Creating listing:', listingData);
+
+                // Show success message
+                document.getElementById('listingFormContainer').style.display = 'none';
+                document.getElementById('successMessage').classList.add('active');
+
+                // In a real app, this would:
+                // - Create smart contract listing
+                // - Upload metadata to IPFS
+                // - Send to marketplace API
+                // - Update user's dashboard
+                // - Send notifications
+
+                // Simulate network delay
+                setTimeout(() => {
+                    alert(`🎉 ${currentNft.name} Listed Successfully!\n\nListing Type: ${currentListingType.toUpperCase()}\n\nYour NFT is now live on the marketplace. You'll receive notifications for any offers or purchases.\n\nIn the real app, this would:\n• Create blockchain transaction\n• List on marketplace\n• Set up smart contract escrow\n• Enable offer notifications\n• Track listing analytics`);
+                }, 1000);
+            }
+
+            function listForSale(nftId) {
+                showListingModal(nftId);
+                selectListingType('fixed');
+            }
+
+            function listForTrade(nftId) {
+                showListingModal(nftId);
+                selectListingType('trade');
+            }
+
+            function showQuickListModal() {
+                alert('📝 Quick List NFT\n\nIn the real app, this would show:\n\n• Dropdown to select NFT from collection\n• Quick pricing suggestions\n• One-click listing options\n• Bulk listing for multiple NFTs\n• Template settings for repeat listings');
+            }
+
+            // Close modal when clicking outside
+            document.getElementById('listingModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeListingModal();
+                }
+            });
         </script>
     </div>
 </body>

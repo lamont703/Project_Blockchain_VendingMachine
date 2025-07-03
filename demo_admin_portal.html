@@ -276,6 +276,18 @@
             background: #e74c3c;
         }
 
+        .tier-legendary {
+            background: #2500f3;
+        }
+
+        .tier-ultimate {
+            background: #f312f3;
+        }
+
+        .tier-mythic {
+            background: #f31212;
+        }
+
         .stock-count {
             font-size: 18px;
             font-weight: bold;
@@ -586,7 +598,10 @@
                                 <option value="">Select Tier</option>
                                 <option value="basic">$25 Basic Pack</option>
                                 <option value="premium">$50 Premium Pack</option>
-                                <option value="elite">$75 Elite Pack</option>
+                                <option value="elite">$100 Elite Pack</option>
+                                <option value="legendary">$250 Legendary Pack</option>
+                                <option value="ultimate">$500 Ultimate Pack</option>
+                                <option value="mythic">$1000 Mythic Pack</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -641,15 +656,58 @@
 
                 <div class="inventory-item">
                     <div class="tier-info">
-                        <div class="tier-badge tier-elite">$75 ELITE</div>
+                        <div class="tier-badge tier-elite">$100 ELITE</div>
                         <div>
                             <div style="color: #ecf0f1; font-weight: bold;">Elite Pack Tier</div>
-                            <div style="color: #bdc3c7; font-size: 14px;">15 random cards • Guaranteed 1 Legendary</div>
+                            <div style="color: #bdc3c7; font-size: 14px;">15 random cards • Guaranteed 1 Epic</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 15px;">
                         <div class="stock-count">23 Available</div>
                         <button class="action-btn" onclick="manageInventory('elite')">Manage</button>
+                    </div>
+                </div>
+
+                <div class="inventory-item">
+                    <div class="tier-info">
+                        <div class="tier-badge tier-legendary">$250 LEGENDARY</div>
+                        <div>
+                            <div style="color: #ecf0f1; font-weight: bold;">Legendary Pack Tier</div>
+                            <div style="color: #bdc3c7; font-size: 14px;">25 random cards • Guaranteed 1 Legendary</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="stock-count">15 Available</div>
+                        <button class="action-btn" onclick="manageInventory('legendary')">Manage</button>
+                    </div>
+                </div>
+
+                <div class="inventory-item">
+                    <div class="tier-info">
+                        <div class="tier-badge tier-ultimate">$500 ULTIMATE</div>
+                        <div>
+                            <div style="color: #ecf0f1; font-weight: bold;">Ultimate Pack Tier</div>
+                            <div style="color: #bdc3c7; font-size: 14px;">50 random cards • Guaranteed 3 Legendary</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="stock-count">8 Available</div>
+                        <button class="action-btn" onclick="manageInventory('ultimate')">Manage</button>
+                    </div>
+                </div>
+
+                <div class="inventory-item">
+                    <div class="tier-info">
+                        <div class="tier-badge tier-mythic">$1000 MYTHIC</div>
+                        <div>
+                            <div style="color: #ecf0f1; font-weight: bold;">Mythic Pack Tier</div>
+                            <div style="color: #bdc3c7; font-size: 14px;">100 random cards • Guaranteed 5 Legendary
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="stock-count">3 Available</div>
+                        <button class="action-btn" onclick="manageInventory('mythic')">Manage</button>
                     </div>
                 </div>
             </div>
@@ -781,10 +839,13 @@
                 const tierNames = {
                     basic: 'Basic ($25)',
                     premium: 'Premium ($50)',
-                    elite: 'Elite ($75)'
+                    elite: 'Elite ($100)',
+                    legendary: 'Legendary ($250)',
+                    ultimate: 'Ultimate ($500)',
+                    mythic: 'Mythic ($1000)'
                 };
 
-                alert(`🎰 Managing ${tierNames[tier]} Tier\n\nIn the real app, this would allow:\n• Adding/removing NFTs from tier\n• Setting drop probabilities\n• Viewing tier statistics\n• Managing stock levels`);
+                alert(`🎰 Managing ${tierNames[tier]}\n\nIn the real app, this would allow:\n• Adding/removing NFTs from tier\n• Setting drop probabilities\n• Viewing tier statistics\n• Managing stock levels`);
             }
 
             function fulfillOrder(userEmail) {

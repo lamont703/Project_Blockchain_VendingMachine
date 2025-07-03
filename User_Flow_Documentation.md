@@ -1,7 +1,7 @@
 # 🔄 Web3 Trading Hub - Complete User Flow Documentation
 
 **Project:** Blockchain-powered Digital Vending Machine for NFT Trading Cards  
-**Client:** Johnnie ("JHeat" on TikTok)  
+**Client:** Johnnie Heather  
 **Documentation Standard:** UX Industry Best Practices
 
 ---
@@ -21,6 +21,7 @@
 ## 👥 User Personas
 
 ### Primary Persona: App User (Collector)
+
 **Name:** Alex "CardMaster" Thompson  
 **Age:** 24  
 **Background:** Gaming enthusiast, casual crypto user  
@@ -29,6 +30,7 @@
 **Tech Comfort:** Moderate (uses MetaMask, basic DeFi)
 
 ### Secondary Persona: Admin User (Platform Manager)
+
 **Name:** Sarah Johnson  
 **Role:** Platform Operations Manager  
 **Background:** 5+ years e-commerce, new to Web3  
@@ -41,19 +43,21 @@
 ## 📖 User Stories
 
 ### Epic 1: Card Acquisition
+
 ```
 As a collector,
 I want to purchase NFT card packs from a vending machine interface,
 So that I can build my digital collection with a nostalgic experience.
 
 Acceptance Criteria:
-- Choose from 3 pack tiers ($25, $50, $75)
+- Choose from 6 pack tiers ($25, $50, $100, $250, $500, $1000)
 - Pay with credit card OR crypto wallet
 - See animated minting process
 - Receive cards in wallet/email
 ```
 
 ### Epic 2: Marketplace Trading
+
 ```
 As a collector,
 I want to buy, sell, and trade cards with other collectors,
@@ -67,6 +71,7 @@ Acceptance Criteria:
 ```
 
 ### Epic 3: Physical Redemption
+
 ```
 As a collector,
 I want to burn my NFT cards to receive physical copies,
@@ -80,6 +85,7 @@ Acceptance Criteria:
 ```
 
 ### Epic 4: Platform Management
+
 ```
 As an admin,
 I want to manage NFT inventory and user interactions,
@@ -98,24 +104,24 @@ Acceptance Criteria:
 
 ### Journey 1: First-Time User (Guest Purchase)
 
-| Stage | Action | Emotion | Pain Points | Opportunities |
-|-------|---------|---------|-------------|---------------|
-| **Discovery** | Finds vending machine link | �� Curious | No crypto knowledge | Clear onboarding |
-| **Exploration** | Browses pack tiers | 🤔 Considering | Price confusion | Value explanation |
-| **Purchase** | Pays with credit card | 😰 Nervous | Trust issues | Security badges |
-| **Minting** | Watches animation | 😍 Excited | Waiting anxiety | Progress indicators |
-| **Reveal** | Opens cards | 🎉 Thrilled | Nothing rare | Guaranteed value |
-| **Follow-up** | Receives email prompt | 🤷 Confused | Wallet complexity | Simple tutorials |
+| Stage           | Action                     | Emotion        | Pain Points         | Opportunities       |
+| --------------- | -------------------------- | -------------- | ------------------- | ------------------- |
+| **Discovery**   | Finds vending machine link | �� Curious     | No crypto knowledge | Clear onboarding    |
+| **Exploration** | Browses pack tiers         | 🤔 Considering | Price confusion     | Value explanation   |
+| **Purchase**    | Pays with credit card      | 😰 Nervous     | Trust issues        | Security badges     |
+| **Minting**     | Watches animation          | 😍 Excited     | Waiting anxiety     | Progress indicators |
+| **Reveal**      | Opens cards                | 🎉 Thrilled    | Nothing rare        | Guaranteed value    |
+| **Follow-up**   | Receives email prompt      | 🤷 Confused    | Wallet complexity   | Simple tutorials    |
 
 ### Journey 2: Experienced User (Marketplace Trading)
 
-| Stage | Action | Emotion | Pain Points | Opportunities |
-|-------|---------|---------|-------------|---------------|
-| **Browse** | Searches marketplace | 🎯 Focused | Too many options | Smart filters |
-| **Evaluate** | Checks card details | 🤓 Analytical | Price uncertainty | Market data |
-| **Negotiate** | Makes offer | 😬 Hopeful | Communication lag | Real-time chat |
-| **Complete** | Executes trade | 😌 Satisfied | Gas fees | Fee transparency |
-| **Collect** | Receives NFT | 😊 Happy | Confirmation delay | Status updates |
+| Stage         | Action               | Emotion       | Pain Points        | Opportunities    |
+| ------------- | -------------------- | ------------- | ------------------ | ---------------- |
+| **Browse**    | Searches marketplace | 🎯 Focused    | Too many options   | Smart filters    |
+| **Evaluate**  | Checks card details  | 🤓 Analytical | Price uncertainty  | Market data      |
+| **Negotiate** | Makes offer          | 😬 Hopeful    | Communication lag  | Real-time chat   |
+| **Complete**  | Executes trade       | 😌 Satisfied  | Gas fees           | Fee transparency |
+| **Collect**   | Receives NFT         | 😊 Happy      | Confirmation delay | Status updates   |
 
 ---
 
@@ -126,7 +132,7 @@ Acceptance Criteria:
 ```
 START: User lands on homepage
   ↓
-1. Browse pack tiers ($25, $50, $75)
+1. Browse pack tiers ($25, $50, $100, $250, $500, $1000)
   ↓
 2. Select pack tier → [Pack details modal opens]
   ↓
@@ -186,29 +192,29 @@ END: User has NFTs in their wallet
 
 ### Swimlane 1: Marketplace Transaction
 
-| **Buyer** | **System** | **Seller** | **Admin** |
-|-----------|------------|------------|-----------|
-| Browse marketplace | Load listings from database | - | Monitor marketplace activity |
-| Click card | Display card details + price history | - | - |
-| Make offer ($50) | Create offer record | Receive notification | - |
-| - | Send notification | Review offer | - |
-| Wait for response | Track offer status | Accept offer | - |
-| - | Process payment (Stripe/crypto) | - | Collect 2.5% fee |
-| - | Transfer NFT ownership | - | - |
-| Receive NFT | Update blockchain state | Receive payment | Update revenue dashboard |
-| - | Send confirmation emails | - | - |
+| **Buyer**          | **System**                           | **Seller**           | **Admin**                    |
+| ------------------ | ------------------------------------ | -------------------- | ---------------------------- |
+| Browse marketplace | Load listings from database          | -                    | Monitor marketplace activity |
+| Click card         | Display card details + price history | -                    | -                            |
+| Make offer ($50)   | Create offer record                  | Receive notification | -                            |
+| -                  | Send notification                    | Review offer         | -                            |
+| Wait for response  | Track offer status                   | Accept offer         | -                            |
+| -                  | Process payment (Stripe/crypto)      | -                    | Collect 2.5% fee             |
+| -                  | Transfer NFT ownership               | -                    | -                            |
+| Receive NFT        | Update blockchain state              | Receive payment      | Update revenue dashboard     |
+| -                  | Send confirmation emails             | -                    | -                            |
 
 ### Swimlane 2: Physical Redemption Process
 
-| **User** | **System** | **Admin** | **Shipping** |
-|----------|------------|-----------|---------------|
-| Select NFT to redeem | Validate NFT ownership | - | - |
-| Enter shipping info | Create redemption request | View in fulfillment queue | - |
-| Confirm burn | Execute burn transaction | - | - |
-| - | Generate shipping label | Print physical card | - |
-| Receive tracking email | Send tracking updates | Package card | Pick up package |
-| Track package | Update delivery status | Update order status | Deliver to customer |
-| Receive physical card | Close redemption ticket | Archive completed order | Confirm delivery |
+| **User**               | **System**                | **Admin**                 | **Shipping**        |
+| ---------------------- | ------------------------- | ------------------------- | ------------------- |
+| Select NFT to redeem   | Validate NFT ownership    | -                         | -                   |
+| Enter shipping info    | Create redemption request | View in fulfillment queue | -                   |
+| Confirm burn           | Execute burn transaction  | -                         | -                   |
+| -                      | Generate shipping label   | Print physical card       | -                   |
+| Receive tracking email | Send tracking updates     | Package card              | Pick up package     |
+| Track package          | Update delivery status    | Update order status       | Deliver to customer |
+| Receive physical card  | Close redemption ticket   | Archive completed order   | Confirm delivery    |
 
 ---
 
@@ -216,15 +222,15 @@ END: User has NFTs in their wallet
 
 ### User Experience Metrics
 
-| Flow | Metric | Target | Measurement |
-|------|---------|---------|-------------|
-| Guest Purchase | Conversion Rate | >40% | Visitors who complete purchase |
-| Wallet Connection | Success Rate | >85% | Successful connections / attempts |
-| Marketplace Listing | Time to List | <3 min | Average time from start to live |
-| Trading Completion | Success Rate | >75% | Completed trades / initiated |
-| Physical Redemption | Delivery Time | <10 days | Ship date to delivery |
-| Admin Tasks | Efficiency | >90% | Tasks completed without escalation |
+| Flow                | Metric          | Target   | Measurement                        |
+| ------------------- | --------------- | -------- | ---------------------------------- |
+| Guest Purchase      | Conversion Rate | >40%     | Visitors who complete purchase     |
+| Wallet Connection   | Success Rate    | >85%     | Successful connections / attempts  |
+| Marketplace Listing | Time to List    | <3 min   | Average time from start to live    |
+| Trading Completion  | Success Rate    | >75%     | Completed trades / initiated       |
+| Physical Redemption | Delivery Time   | <10 days | Ship date to delivery              |
+| Admin Tasks         | Efficiency      | >90%     | Tasks completed without escalation |
 
 ---
 
-*This comprehensive user flow documentation follows industry UX standards including user journey mapping, technical flow diagrams, swimlane analysis, and service blueprinting to ensure complete understanding of all user interactions from both app user and admin perspectives.*
+_This comprehensive user flow documentation follows industry UX standards including user journey mapping, technical flow diagrams, swimlane analysis, and service blueprinting to ensure complete understanding of all user interactions from both app user and admin perspectives._

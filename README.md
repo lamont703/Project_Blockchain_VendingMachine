@@ -11,7 +11,7 @@
 
 Web3 Trading Hub is an innovative platform that brings the nostalgic experience of trading card packs into the Web3 era. Users can purchase randomized NFT trading card packs through a stylized vending machine interface, trade cards with other collectors in a built-in marketplace, and optionally redeem their digital cards for physical copies.
 
-**Client:** Johnnie (aka "JHeat" on TikTok)  
+**Client:** Johnnie Heather  
 **Theme:** Pokémon/Game Boy retro aesthetic  
 **Network:** Polygon (MATIC) for low-cost transactions
 
@@ -20,7 +20,7 @@ Web3 Trading Hub is an innovative platform that brings the nostalgic experience 
 ### 🎰 Digital Vending Machine
 
 - Retro gaming interface with pixel-art animations
-- Three tier system: $25 Basic / $50 Premium / $75 Elite packs
+- Six tier system: $25 Basic / $50 Premium / $100 Elite / $250 Legendary / $500 Ultimate / $1000 Mythic packs
 - Flexible payment: Credit cards (Stripe) or crypto wallets
 - Guest purchases without wallet connection
 
@@ -184,7 +184,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- **Client:** Johnnie ("JHeat") for the innovative vision
+- **Client:** Johnnie Heather for the innovative vision
 - **Inspiration:** Pokémon TCG and retro gaming aesthetics
 - **Community:** Polygon and Web3 ecosystem
 
