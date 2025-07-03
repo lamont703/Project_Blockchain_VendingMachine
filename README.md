@@ -9,7 +9,7 @@
 
 ## 📖 Project Overview
 
-Web3 Trading Hub is an innovative platform that brings the nostalgic experience of trading card packs into the Web3 era. Users can purchase randomized NFT trading card packs through a stylized vending machine interface and optionally redeem their digital cards for physical copies.
+Web3 Trading Hub is an innovative platform that brings the nostalgic experience of trading card packs into the Web3 era. Users can purchase randomized NFT trading card packs through a stylized vending machine interface, trade cards with other collectors in a built-in marketplace, and optionally redeem their digital cards for physical copies.
 
 **Client:** Johnnie (aka "JHeat" on TikTok)  
 **Theme:** Pokémon/Game Boy retro aesthetic  
@@ -38,12 +38,22 @@ Web3 Trading Hub is an innovative platform that brings the nostalgic experience 
 - Shipping tracking and status updates
 - Multi-wallet support (MetaMask, WalletConnect)
 
+### 🛒 Marketplace & Trading
+
+- User-to-user NFT card marketplace
+- Buy/sell listings with secure transactions
+- P2P trading with negotiation system
+- Price history and market analytics
+- User ratings and reputation system
+- Auction and offer mechanisms
+
 ### 🔐 Admin Portal
 
 - NFT creation with artwork upload
 - Inventory management per tier
 - Analytics dashboard for sales tracking
 - Physical fulfillment workflow management
+- Marketplace moderation and fee management
 
 ## 🛠 Tech Stack
 
@@ -86,6 +96,19 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
+## 🎮 Demo Screens
+
+This repository includes complete demo screens showcasing all platform features:
+
+- **[index.html](./index.html)** - Demo suite overview and navigation
+- **[demo_landing_page.html](./demo_landing_page.html)** - Vending machine interface
+- **[demo_minting_flow.html](./demo_minting_flow.html)** - Pack opening and card reveals
+- **[demo_user_dashboard.html](./demo_user_dashboard.html)** - Collection management
+- **[demo_marketplace.html](./demo_marketplace.html)** - 🆕 Trading marketplace
+- **[demo_admin_portal.html](./demo_admin_portal.html)** - Admin management tools
+
+Each demo is fully interactive and demonstrates the complete user experience with retro gaming aesthetics.
+
 ## 📁 Project Structure
 
 ```
@@ -93,6 +116,7 @@ web3-trading-hub/
 ├── components/          # React components
 │   ├── VendingMachine/ # Main interface
 │   ├── Dashboard/      # User dashboard
+│   ├── Marketplace/    # Trading & marketplace
 │   └── Admin/          # Admin portal
 ├── contracts/          # Smart contracts
 ├── pages/              # Next.js pages
@@ -113,7 +137,10 @@ web3-trading-hub/
 1. **Guest Purchase:** Landing → Tier → Payment → Email → Mint
 2. **Wallet Purchase:** Landing → Connect → Tier → Transaction
 3. **NFT Redemption:** Dashboard → Select → Burn → Ship
-4. **Admin Management:** Login → Mint → Assign → Fulfill
+4. **Marketplace Trading:** Dashboard → Marketplace → Browse/Search → Buy/Offer/Trade
+5. **Selling Cards:** Dashboard → Collection → List for Sale → Manage Listing
+6. **P2P Trading:** Marketplace → Find Partner → Propose Trade → Negotiate → Execute
+7. **Admin Management:** Login → Mint → Assign → Fulfill → Moderate Marketplace
 
 ## 📚 Documentation
 
