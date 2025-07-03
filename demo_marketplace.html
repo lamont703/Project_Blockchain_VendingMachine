@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Trading Hub - Marketplace Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            font-family: 'Arial Black', Arial, sans-serif !important;
+            background-color: #4A5FC1 !important;
+            background: #4A5FC1 !important;
+            min-height: 100vh !important;
+            color: #333 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .background-wrapper {
+            background-color: #4A5FC1 !important;
+            background: #4A5FC1 !important;
+            min-height: 100vh !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .demo-banner {
+            background: #FF6347;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .header {
+            background: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-tabs a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs a:hover,
+        .nav-tabs a.active {
+            background: #FFD700;
+            color: #fff;
+        }
+
+        .wallet-info {
+            background: #87CEEB;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .marketplace-header {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .marketplace-title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .filter-btn {
+            background: #87CEEB;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: #4682B4;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #FFD700;
+            color: #333;
+        }
+
+        .quick-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-filter {
+            background: #f8f8f8;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .quick-filter:hover {
+            border-color: #FFD700;
+            background: #fff;
+        }
+
+        .quick-filter.active {
+            background: #FFD700;
+            border-color: #FFD700;
+            color: #333;
+        }
+
+        .marketplace-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .listing-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+        }
+
+        .rarity-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+        }
+
+        .card-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card-id {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF6347;
+            margin-bottom: 15px;
+        }
+
+        .seller-info {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            background: #FFD700;
+            color: #333;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .action-btn:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background: #87CEEB;
+            color: white;
+        }
+
+        .action-btn.secondary:hover {
+            background: #4682B4;
+        }
+
+        .sidebar {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .sidebar h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .featured-list {
+            margin-bottom: 30px;
+        }
+
+        .featured-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .featured-item:hover {
+            background: #f8f8f8;
+        }
+
+        .featured-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .featured-info {
+            flex: 1;
+        }
+
+        .featured-name {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .featured-price {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .market-stats {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .sell-button {
+            background: #FF6347;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .sell-button:hover {
+            background: #FF4500;
+            transform: translateY(-2px);
+        }
+
+        .my-listings-btn {
+            background: #87CEEB;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .my-listings-btn:hover {
+            background: #4682B4;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .card-details {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .detail-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .detail-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .detail-info p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .price-section {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .current-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FF6347;
+            margin-bottom: 10px;
+        }
+
+        .offer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .offer-input:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .modal-btn.primary {
+            background: #FFD700;
+            color: #333;
+        }
+
+        .modal-btn.primary:hover {
+            background: #FFA500;
+        }
+
+        .modal-btn.secondary {
+            background: #87CEEB;
+            color: white;
+        }
+
+        .modal-btn.secondary:hover {
+            background: #4682B4;
+        }
+
+        .modal-btn.danger {
+            background: #FF6347;
+            color: white;
+        }
+
+        .modal-btn.danger:hover {
+            background: #FF4500;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-nav a {
+            color: #FFD700;
+            text-decoration: underline;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .marketplace-content {
+                grid-template-columns: 1fr;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .quick-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .quick-filter {
+                text-align: center;
+            }
+
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-details {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #4A5FC1 !important; background: #4A5FC1 !important; margin: 0; padding: 0;">
+    <div class="background-wrapper">
+        <div class="demo-banner">🛒 DEMO VERSION - NFT Trading Card Marketplace</div>
+
+        <header class="header">
+            <nav class="nav">
+                <div class="logo">🎮 Web3 Trading Hub</div>
+                <ul class="nav-tabs">
+                    <li><a href="demo_landing_page.html">Home</a></li>
+                    <li><a href="#" class="active">🛒 Marketplace</a></li>
+                    <li><a href="demo_user_dashboard.html">Dashboard</a></li>
+                    <li><a href="demo_minting_flow.html">Mint</a></li>
+                </ul>
+                <div class="wallet-info">🔗 0x1234...5678</div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="marketplace-header">
+                <h1 class="marketplace-title">🛒 Trading Card Marketplace</h1>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                    Buy, sell, and trade NFT cards with other collectors. All transactions are secure and verified on
+                    the blockchain.
+                </p>
+
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="🔍 Search cards, collections, or sellers...">
+                    <button class="filter-btn">🎯 Filters</button>
+                    <button class="filter-btn">📊 Sort</button>
+                </div>
+
+                <div class="quick-filters">
+                    <div class="quick-filter active" onclick="filterRarity('all')">All Cards</div>
+                    <div class="quick-filter" onclick="filterRarity('common')">⭐ Common</div>
+                    <div class="quick-filter" onclick="filterRarity('rare')">💎 Rare</div>
+                    <div class="quick-filter" onclick="filterRarity('epic')">👑 Epic</div>
+                    <div class="quick-filter" onclick="filterRarity('legendary')">🌟 Legendary</div>
+                    <div class="quick-filter" onclick="filterRarity('hot')">🔥 Hot Deals</div>
+                </div>
+            </div>
+
+            <div class="marketplace-content">
+                <div class="listings-grid" id="listingsGrid">
+                    <!-- Listings will be generated by JavaScript -->
+                </div>
+
+                <div class="sidebar">
+                    <button class="sell-button" onclick="showSellModal()">💰 Sell Your Cards</button>
+                    <button class="my-listings-btn" onclick="showMyListings()">📤 My Listings</button>
+
+                    <div class="market-stats">
+                        <h3>📊 Market Stats</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">Total Volume:</span>
+                            <span class="stat-value">$45,230</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Active Listings:</span>
+                            <span class="stat-value">234</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Avg. Price:</span>
+                            <span class="stat-value">$67.50</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">24h Change:</span>
+                            <span class="stat-value" style="color: #4CAF50;">+12.5%</span>
+                        </div>
+                    </div>
+
+                    <div class="featured-list">
+                        <h3>🔥 Hot Deals</h3>
+                        <div class="featured-item"
+                            onclick="showCardDetails({name: 'Lightning Beast', price: '$19.99', emoji: '⚡', rarity: 'Rare'})">
+                            <div class="featured-icon" style="background: linear-gradient(45deg, #9370DB, #6A5ACD);">⚡
+                            </div>
+                            <div class="featured-info">
+                                <div class="featured-name">Lightning Beast</div>
+                                <div class="featured-price">$19.99 (20% off)</div>
+                            </div>
+                        </div>
+                        <div class="featured-item"
+                            onclick="showCardDetails({name: 'Fire Dragon', price: '$89.99', emoji: '🔥', rarity: 'Legendary'})">
+                            <div class="featured-icon" style="background: linear-gradient(45deg, #FF6347, #DC143C);">🔥
+                            </div>
+                            <div class="featured-info">
+                                <div class="featured-name">Fire Dragon</div>
+                                <div class="featured-price">$89.99 (HOT!)</div>
+                            </div>
+                        </div>
+                        <div class="featured-item"
+                            onclick="showCardDetails({name: 'Crystal Mage', price: '$34.99', emoji: '💎', rarity: 'Epic'})">
+                            <div class="featured-icon" style="background: linear-gradient(45deg, #FFD700, #FFA500);">💎
+                            </div>
+                            <div class="featured-info">
+                                <div class="featured-name">Crystal Mage</div>
+                                <div class="featured-price">$34.99</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back-nav">
+                <p style="color: #fff; margin-bottom: 20px;">
+                    <a href="demo_landing_page.html">← Back to Landing</a> |
+                    <a href="demo_user_dashboard.html">View Dashboard</a> |
+                    <a href="demo_admin_portal.html">Admin Portal</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Card Details Modal -->
+        <div id="cardModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h2 class="modal-title">Card Details</h2>
+
+                <div class="card-details" id="cardDetails">
+                    <!-- Card details will be populated here -->
+                </div>
+
+                <div class="price-section">
+                    <div class="current-price" id="modalPrice">$0.00</div>
+                    <input type="number" class="offer-input" placeholder="Enter your offer amount..." id="offerInput">
+                    <p style="font-size: 14px; color: #666;">
+                        💡 Tip: Sellers typically accept offers 10-20% below asking price
+                    </p>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+                    <button class="modal-btn primary" onclick="makeOffer()">🔄 Make Offer</button>
+                    <button class="modal-btn danger" onclick="buyNow()">💰 Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const marketplaceListings = [
+                { id: 1, name: 'Fire Dragon Elite', emoji: '🔥', rarity: 'Legendary', price: '$89.99', seller: 'DragonMaster', rating: '4.8/5', mintId: '#1337' },
+                { id: 2, name: 'Water Guardian', emoji: '💧', rarity: 'Rare', price: '$24.99', seller: 'AquaTrainer', rating: '4.6/5', mintId: '#0042' },
+                { id: 3, name: 'Lightning Beast', emoji: '⚡', rarity: 'Rare', price: '$19.99', seller: 'ThunderStrike', rating: '4.9/5', mintId: '#0889' },
+                { id: 4, name: 'Crystal Mage', emoji: '💎', rarity: 'Epic', price: '$34.99', seller: 'CrystalKing', rating: '4.7/5', mintId: '#2156' },
+                { id: 5, name: 'Shadow Phantom', emoji: '👻', rarity: 'Legendary', price: '$125.00', seller: 'ShadowLord', rating: '4.9/5', mintId: '#0001' },
+                { id: 6, name: 'Earth Protector', emoji: '🌍', rarity: 'Common', price: '$8.99', seller: 'EarthGuard', rating: '4.5/5', mintId: '#0445' },
+                { id: 7, name: 'Wind Spirit', emoji: '💨', rarity: 'Common', price: '$7.50', seller: 'AirBender', rating: '4.3/5', mintId: '#0567' },
+                { id: 8, name: 'Ice Queen', emoji: '❄️', rarity: 'Epic', price: '$45.99', seller: 'FrostMage', rating: '4.8/5', mintId: '#0678' },
+                { id: 9, name: 'Solar Warrior', emoji: '☀️', rarity: 'Epic', price: '$38.99', seller: 'SunKnight', rating: '4.6/5', mintId: '#0789' },
+                { id: 10, name: 'Forest Keeper', emoji: '🌲', rarity: 'Common', price: '$6.99', seller: 'TreeHugger', rating: '4.4/5', mintId: '#0834' },
+                { id: 11, name: 'Moon Dancer', emoji: '🌙', rarity: 'Rare', price: '$28.99', seller: 'LunarMage', rating: '4.7/5', mintId: '#0945' },
+                { id: 12, name: 'Star Collector', emoji: '⭐', rarity: 'Epic', price: '$52.99', seller: 'StarGazer', rating: '4.9/5', mintId: '#1056' }
+            ];
+
+            let filteredListings = [...marketplaceListings];
+
+            function getRarityColor(rarity) {
+                const colors = {
+                    'Common': '#87CEEB',
+                    'Rare': '#9370DB',
+                    'Epic': '#FFD700',
+                    'Legendary': '#FF6347'
+                };
+                return colors[rarity] || '#87CEEB';
+            }
+
+            function generateListings() {
+                const listingsGrid = document.getElementById('listingsGrid');
+                listingsGrid.innerHTML = '';
+
+                filteredListings.forEach(listing => {
+                    const listingCard = document.createElement('div');
+                    listingCard.className = 'listing-card';
+                    listingCard.onclick = () => showCardDetails(listing);
+
+                    listingCard.innerHTML = `
+                        <div class="card-image" style="background: linear-gradient(45deg, ${getRarityColor(listing.rarity)}, ${getRarityColor(listing.rarity)}dd);">
+                            <span>${listing.emoji}</span>
+                            <div class="rarity-badge">${listing.rarity}</div>
+                        </div>
+                        <div class="card-name">${listing.name}</div>
+                        <div class="card-id">Mint ${listing.mintId}</div>
+                        <div class="card-price">${listing.price}</div>
+                        <div class="seller-info">
+                            👤 ${listing.seller}<br>
+                            ⭐ ${listing.rating}
+                        </div>
+                        <div class="action-buttons">
+                            <button class="action-btn" onclick="event.stopPropagation(); buyNow('${listing.name}')">💰 Buy</button>
+                            <button class="action-btn secondary" onclick="event.stopPropagation(); makeOffer('${listing.name}')">🔄 Offer</button>
+                        </div>
+                    `;
+
+                    listingsGrid.appendChild(listingCard);
+                });
+            }
+
+            function filterRarity(rarity) {
+                // Update active filter
+                document.querySelectorAll('.quick-filter').forEach(filter => {
+                    filter.classList.remove('active');
+                });
+                event.target.classList.add('active');
+
+                // Filter listings
+                if (rarity === 'all') {
+                    filteredListings = [...marketplaceListings];
+                } else if (rarity === 'hot') {
+                    filteredListings = marketplaceListings.filter(listing =>
+                        listing.price.includes('19.99') || listing.price.includes('89.99')
+                    );
+                } else {
+                    filteredListings = marketplaceListings.filter(listing =>
+                        listing.rarity.toLowerCase() === rarity
+                    );
+                }
+
+                generateListings();
+            }
+
+            function showCardDetails(listing) {
+                const modal = document.getElementById('cardModal');
+                const cardDetails = document.getElementById('cardDetails');
+                const modalPrice = document.getElementById('modalPrice');
+
+                cardDetails.innerHTML = `
+                    <div class="detail-image" style="background: linear-gradient(45deg, ${getRarityColor(listing.rarity)}, ${getRarityColor(listing.rarity)}dd);">
+                        ${listing.emoji}
+                    </div>
+                    <div class="detail-info">
+                        <h3>${listing.name}</h3>
+                        <p><strong>Mint ID:</strong> ${listing.mintId}</p>
+                        <p><strong>Rarity:</strong> ${listing.rarity}</p>
+                        <p><strong>Power Level:</strong> ${Math.floor(Math.random() * 30) + 70}/100</p>
+                        <p><strong>Seller:</strong> ${listing.seller}</p>
+                        <p><strong>Rating:</strong> ⭐ ${listing.rating}</p>
+                        <p><strong>Listed:</strong> 2 days ago</p>
+                    </div>
+                `;
+
+                modalPrice.textContent = listing.price;
+                modal.style.display = 'block';
+            }
+
+            function closeModal() {
+                document.getElementById('cardModal').style.display = 'none';
+            }
+
+            function makeOffer() {
+                const offerAmount = document.getElementById('offerInput').value;
+                if (!offerAmount) {
+                    alert('Please enter an offer amount!');
+                    return;
+                }
+
+                alert(`🔄 Offer Sent!\n\nYour offer of $${offerAmount} has been sent to the seller.\n\nIn the real app, this would:\n• Send a notification to the seller\n• Create an escrow smart contract\n• Enable counter-offer negotiations\n• Track offer history`);
+                closeModal();
+            }
+
+            function buyNow(cardName) {
+                alert(`💰 Purchase Initiated!\n\nBuying: ${cardName || 'Selected Card'}\n\nIn the real app, this would:\n• Create secure blockchain transaction\n• Transfer NFT to your wallet\n• Update seller's account\n• Generate transaction receipt\n• Add to your collection`);
+                closeModal();
+            }
+
+            function showSellModal() {
+                alert('💰 Sell Your Cards\n\nIn the real app, this would open a modal with:\n\n• Your NFT collection to select from\n• Price setting options (fixed, auction, offers)\n• Listing duration settings\n• Fee calculator\n• Market price suggestions\n• Listing management tools');
+            }
+
+            function showMyListings() {
+                alert('📤 My Listings\n\nIn the real app, this would show:\n\n• Your active listings with stats\n• Pending offers and negotiations\n• Sales history and earnings\n• Listing performance analytics\n• Quick edit/remove options\n• Boost/promote listings');
+            }
+
+            // Initialize the marketplace
+            document.addEventListener('DOMContentLoaded', function () {
+                generateListings();
+            });
+
+            // Close modal when clicking outside
+            window.onclick = function (event) {
+                const modal = document.getElementById('cardModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>
