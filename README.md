@@ -145,6 +145,7 @@ web3-trading-hub/
 ## 📚 Documentation
 
 - **[Complete Wireframes & Specs](./Web3_Trading_Hub_Wireframes.md)**
+- **[User Flow Documentation](./User_Flow_Documentation.md)** - 🆕 Industry-standard UX flows
 - **[Smart Contract Docs](./docs/contracts.md)**
 - **[API Documentation](./docs/api.md)**
 - **[Deployment Guide](./docs/deployment.md)**
